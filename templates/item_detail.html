@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset = "UTF-8">
+	<title>Chào Mừng bạn đến với hệ thống</title>
+	<link rel="stylesheet"
+	      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	      crossorigin="anonymous">
+</head>
+	<body>
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark"
+		     style="background-color: tomato">
+			<div>
+				<a href="https://www.facebook.com/profile.php?id=100008643390611" class="navbar-brand">Leonard Trinh</a>
+			</div>
+		</nav>
+	</header>
+
+	<div class="row">
+		<div class="container">
+			<h3 class="text-center">Chi tiết sản phẩm</h3>
+			<hr>
+			<br>
+			<table class="table table-bordered">
+				<thead>
+					<tr style="font-weight: bold">Shop Leonard Trinh</tr>
+				</thead>
+					<td>
+						<lable>ID: </lable> <lable>{{ item.id }}</lable> <br> <br>
+						<lable>Chu de: </lable> <lable>{{ item.title }}</lable> <br> <br>
+						<lable>Ten san pham: </lable> <lable>{{ item.name }}</lable> <br> <br>
+						<lable>Gia niem yet: </lable> <lable>{{ item.price }}</lable> <br> <br>
+					</td>
+					<td>
+						<lable>Giam gia: </lable> <lable>{{ item.discount }}</lable> <br> <br>
+						<lable>Ngay san xuat:</lable> <lable>{{ item.product.publicationDate }}</lable> <br> <br>
+						<lable>Ma vach: </lable> <lable>{{ item.product.barcode }}</lable> <br> <br>
+						<lable>Nha san xuat: </lable> <lable>{{ item.product.producer }}</lable> <br> <br>
+					</td>
+					<tr>
+						<td>
+							<form method="get" th:action="@{/cart/add}">
+								<button type="submit" th:name="item_id" th:value="${book.id}">Thêm vào giỏ hàng</button>
+							</form>
+						</td>
+						<td>
+							<form method="get" th:action="@{/home}">
+								<input type="submit" value="Quay lại">
+							</form>
+						</td>
+					</tr>
+			</table>
+		</div>
+	</div>
+	</body>
+</html>
