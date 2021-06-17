@@ -42,13 +42,11 @@
 					</td>
 					<tr>
 						<td>
-							<form method="get" th:action="@{/cart/add}">
-								<button type="submit" th:name="item_id" th:value="${book.id}">Thêm vào giỏ hàng</button>
-							</form>
+                            <a class="btn btn-primary" href="{% url 'add-to-cart' itemId=item.id %}">Add to cart</a>
 						</td>
 						<td>
 							<form method="get" th:action="@{/home}">
-								<input type="submit" value="Quay lại">
+								<a class="btn btn-primary" href="{% url 'home' %}">Back to home</a>
 							</form>
 						</td>
 					</tr>
