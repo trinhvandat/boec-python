@@ -13,5 +13,5 @@ urlpatterns = [
     path(r'orders/(?P<item_id>\d+)/$', views.confirm_order, name='confirm-order'),
     path(r'orders/(?P<order_id>\d+)/(?P<ship_type>\w+)/$', views.corfirm_shipment_method, name='choose-shipment-method'),
     path(r'payments_credit/(?P<shipment_id>\d+)/$', views.pay_credit, name='payment-credit-method'),
-
+    path(r'payments_bank/(?P<shipment_id>\d+)/$', views.pay_bank, name='payment-bank-method')
 ]

@@ -6,13 +6,14 @@ from MySQLdb import Date
 from django.core import serializers
 from django.shortcuts import render
 
+from .forms.BankTransferForm import BankTransferForm
 from .forms.CreditCardForm import CreditCardForm
 from .forms.LoginForm import LoginForm
 from .forms.RegistrationForms import RegistrationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 # Create your views here.
-from boec.models import Customer, Item, Cart, Account, Order, Shipment, Payment, CreditCard
+from boec.models import Customer, Item, Cart, Account, Order, Shipment, Payment, CreditCard, BankTransfer
 
 
 def login(request):
@@ -107,3 +108,21 @@ def pay_credit(request, shipment_id):
             Cart.objects.filter(account=account, item=shipment.order.item).delete()
             return render(request, 'order_success.html', {'paymentInfo':paymentInfo})
     return render(request, 'credit_payment.html', {'form':form, 'shipment':shipment})
+
+def pay_bank(request, shipment_id):
+    form = BankTransferForm()
+    shipment = Shipment.objects.get(id=shipment_id)
+    if request.method == 'POST':
+        form = BankTransferForm(request.POST)
+        if form.is_valid():
+            bankName = form.cleaned_data['bankName']
+            accountNumber = form.cleaned_data['accountNumber']
+            paymentDate = datetime.date.today()
+            total = shipment.order.total + shipment.fee
+            paymentInfo = BankTransfer.objects.create(total=total, paymentDate=paymentDate, bankName=bankName,
+                                                    accountNumber=accountNumber, order=shipment.order,
+                                                    shipment=shipment)
+            account = Account.objects.get(id=request.session['account_id'])
+            Cart.objects.filter().delete()
+            return render(request, 'order_success.html', {'paymentInfo': paymentInfo})
+    return render(request, 'bank_payment.html', {'form': form, 'shipment': shipment})

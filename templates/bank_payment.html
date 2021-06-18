@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank transfer</title>
+</head>
+<form action={% url 'payment-bank-method' shipment_id=shipment.id %}  method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Submit</button>
+</form>
+</body>
+</html>

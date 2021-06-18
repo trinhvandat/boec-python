@@ -59,7 +59,7 @@
                             <a class="btn btn-primary" href="{% url 'payment-credit-method' shipment_id=shipment.id %}">Credit card</a>
 						</td>
 						<td>
-							<a class="btn btn-primary" href="">Bank transfer</a>
+							<a class="btn btn-primary" href="{% url 'payment-bank-method' shipment_id=shipment.id %}">Bank transfer</a>
 						</td>
                         <td></td>
                         <td></td>
@@ -70,7 +70,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <a class="btn btn-primary" href="">Back</a>
+                            <a class="btn btn-primary" href="{% url 'confirm-order' shipment.order.item.id %}">Back</a>
                         </td>
 					</tr>
                 <tr></tr>
