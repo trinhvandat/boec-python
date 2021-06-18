@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chào Mừng bạn đến với hệ thống</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark"
+         style="background-color: tomato">
+        <div>
+            <a href="https://www.facebook.com/profile.php?id=100008643390611" class="navbar-brand">Leonard Trinh</a>
+        </div>
+    </nav>
+</header>
+<h1>order success. You will receive item at {{ paymentInfo.shipment.receiveDate }}</h1>
+<a class="btn btn-primary" href="{% url 'home' %}">Back to home</a>
+</body>
+</html>

@@ -79,3 +79,19 @@ class Shipment(models.Model):
     type = models.CharField(max_length=256, null=True)
     status = models.CharField(max_length=256, null=True)
     receiveDate = models.DateField(null=True)
+
+#Create payment:
+class Payment(models.Model):
+    order = models.ForeignKey(Order ,on_delete=models.CASCADE)
+    shipment = models.ForeignKey(Shipment, on_delete=models.CASCADE)
+    total = models.FloatField(null=True)
+    paymentDate = models.DateField(null=True)
+
+class CreditCard(Payment):
+    nameOnCard = models.CharField(max_length=256)
+    cardNumber = models.CharField(max_length=256)
+    code = models.CharField(max_length=256)
+
+class BankTransfer(Payment):
+    bankName = models.CharField(max_length=256)
+    accountNumber = models.CharField(max_length=256)
