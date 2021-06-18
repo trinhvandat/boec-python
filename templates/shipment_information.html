@@ -51,12 +51,10 @@
                 </tr>
 					<tr>
 						<td>
-                            <a class="btn btn-primary" href="">Now</a>
+                            <a class="btn btn-primary" href="{% url 'choose-shipment-method' order_id=order.id ship_type='NOW' %}">Now</a>
 						</td>
 						<td>
-							<form method="get" th:action="@{/home}">
-								<a class="btn btn-primary" href="">Express</a>
-							</form>
+							<a class="btn btn-primary" href="{% url 'choose-shipment-method' order_id=order.id ship_type='EXPRESS' %}">Express</a>
 						</td>
                         <td></td>
                         <td></td>

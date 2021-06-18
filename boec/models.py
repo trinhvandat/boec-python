@@ -71,3 +71,11 @@ class Order(models.Model):
     code = models.CharField(max_length=256, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+
+#Create shipment
+class Shipment(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, null=False)
+    fee = models.FloatField(null=True)
+    type = models.CharField(max_length=256, null=True)
+    status = models.CharField(max_length=256, null=True)
+    receiveDate = models.DateField(null=True)

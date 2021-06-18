@@ -1,3 +1,4 @@
+import datetime
 import uuid
 from datetime import date
 
@@ -10,7 +11,7 @@ from .forms.RegistrationForms import RegistrationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 # Create your views here.
-from boec.models import Customer, Item, Cart, Account, Order
+from boec.models import Customer, Item, Cart, Account, Order, Shipment
 
 
 def login(request):
@@ -71,8 +72,20 @@ def confirm_order(request, item_id):
     customerId = request.session.get('customer_id')
     customer = Customer.objects.get(id=customerId)
     now = date.today()
-    createDate = now.strftime("%d/%m/%Y")
     code=uuid.uuid4()
     order = Order.objects.create(customer=customer, item=item, total=total, code=code, createDate=now)
     shipTotal = total * 0.05
     return render(request, 'shipment_information.html', {'order':order, 'shipTotal':shipTotal, 'customerName':order.customer.__getName__()})
+
+def corfirm_shipment_method(request, order_id, ship_type):
+    order = Order.objects.get(id=order_id)
+    fee = order.total * 0.05
+    status = 'CREATED'
+    receiveDate = date.today()
+    if ship_type == 'EXPRESS':
+        receiveDate = (datetime.datetime.today() + datetime.timedelta(days=5)).date()
+        print(receiveDate)
+    shipment = Shipment.objects.create(order=order, fee=fee, status=status, type=ship_type, receiveDate=receiveDate)
+    total = fee + order.total
+    customerName = order.customer.__getName__()
+    return render(request, 'payment_information.html', {'shipment':shipment, 'total':total, 'customerName':customerName})
