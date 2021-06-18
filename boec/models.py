@@ -97,6 +97,14 @@ class BankTransfer(Payment):
     bankName = models.CharField(max_length=256)
     accountNumber = models.CharField(max_length=256)
 
+#Create model rating
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    rating = models.IntegerField(null=True)
+    comment = models.CharField(max_length=512)
+    status = models.CharField(max_length=256) #APPROVED, CREATED, REMOVED
+
 
 # Employee models
 class EmpAccount(models.Model):

@@ -51,6 +51,24 @@
 						</td>
 					</tr>
 			</table>
+            <br>
+            <br>
+            <h3>Review for item: {{ item.name }}</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                </tr>
+                </thead>
+                {% for review in reviews %}
+                    <tr>
+                        <td>{{ review.rating }}</td>
+                        <td>{{ review.comment }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        <a class="btn btn-primary" href="{% url 'product-review' item_id=item.id %}">Add review</a>
 		</div>
 	</div>
 	</body>
