@@ -1,3 +1,7 @@
+import uuid
+from datetime import date
+
+from MySQLdb import Date
 from django.core import serializers
 from django.shortcuts import render
 
@@ -6,7 +10,7 @@ from .forms.RegistrationForms import RegistrationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 # Create your views here.
-from boec.models import Customer, Item, Cart, Account
+from boec.models import Customer, Item, Cart, Account, Order
 
 
 def login(request):
@@ -60,3 +64,15 @@ def create_order(request, item_id):
     item = Item.objects.get(id=item_id)
     total = ((100 - float(item.discount))/100) * float(item.price)
     return render(request, 'order_details.html', {'item':item, 'total':total})
+
+def confirm_order(request, item_id):
+    item = Item.objects.get(id=item_id)
+    total = ((100 - float(item.discount)) / 100) * float(item.price)
+    customerId = request.session.get('customer_id')
+    customer = Customer.objects.get(id=customerId)
+    now = date.today()
+    createDate = now.strftime("%d/%m/%Y")
+    code=uuid.uuid4()
+    order = Order.objects.create(customer=customer, item=item, total=total, code=code, createDate=now)
+    shipTotal = total * 0.05
+    return render(request, 'shipment_information.html', {'order':order, 'shipTotal':shipTotal, 'customerName':order.customer.__getName__()})
