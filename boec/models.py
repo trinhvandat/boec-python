@@ -71,6 +71,7 @@ class Order(models.Model):
     code = models.CharField(max_length=256, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    status = models.CharField(max_length=256)  #CREATED, APPROVED, CANCELED
 
 #Create shipment
 class Shipment(models.Model):
@@ -95,3 +96,36 @@ class CreditCard(Payment):
 class BankTransfer(Payment):
     bankName = models.CharField(max_length=256)
     accountNumber = models.CharField(max_length=256)
+
+
+# Employee models
+class EmpAccount(models.Model):
+    username = models.CharField(max_length=256)
+    password = models.CharField(max_length=256)
+
+class EmpAddress(models.Model):
+    numberHouse = models.CharField(max_length=256)
+    street = models.CharField(max_length=256)
+    district = models.CharField(max_length=256)
+    city = models.CharField(max_length=256)
+
+class EmpFullName(models.Model):
+    firstName = models.CharField(max_length=256)
+    midName = models.CharField(max_length=256)
+    lastName = models.CharField(max_length=256)
+
+class Employee(models.Model):
+    email = models.CharField(max_length=256)
+    code = models.CharField(max_length=256)
+    salary = models.FloatField(max_length=256)
+    position = models.CharField(max_length=256)
+    dob = models.DateField(null=True)
+    name = models.ForeignKey(EmpFullName, on_delete=models.CASCADE)
+    account = models.ForeignKey(EmpAccount, on_delete=models.CASCADE)
+    address = models.ForeignKey(EmpAddress, on_delete=models.CASCADE)
+
+class ProcessedOrder(models.Model):
+    processDate = models.DateField(null=True)
+    status = models.CharField(max_length=256)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
