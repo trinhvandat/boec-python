@@ -1,7 +1,11 @@
 from django import forms
 import re
 
-from boec.models import Customer, Account, FullName, Address, Cart
+from boec.customer.model.Account import Account
+from boec.customer.model.Address import Address
+from boec.customer.model.Customer import Customer
+from boec.customer.model.FullName import FullName
+from boec.order.model import Cart
 
 
 class RegistrationForm(forms.Form):

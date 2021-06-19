@@ -1,9 +1,5 @@
-import datetime
-
 from django import forms
 import re
-
-from boec.models import CreditCard
 
 
 class CreditCardForm(forms.Form):
