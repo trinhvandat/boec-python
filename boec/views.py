@@ -15,7 +15,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 # Create your views here.
 from boec.models import Customer, Item, Cart, Account, Order, Shipment, Payment, CreditCard, BankTransfer, Employee, \
-    ProcessedOrder, ProductReview
+    ProcessedOrder, ProductReview, ProductReviewProcessed
 from .forms.ReviewForm import ReviewForm
 
 
@@ -176,5 +176,19 @@ def process_order(request, order_id, status):
     return redirect('order-process-template')
 
 def show_rating_form(request):
-    return render(request, 'cms/rating_process_form.html')
+    productReview = ProductReview.objects.filter(status='CREATED')
+    return render(request, 'cms/rating_process_form.html', {'reviews':productReview})
+
+def process_review(request, product_review_id, status):
+    employeeId = request.session['employee_id']
+    employee = Employee.objects.get(id=employeeId)
+    productReview = ProductReview.objects.get(id=product_review_id)
+    now = datetime.date.today()
+    ProductReviewProcessed.objects.create(productReview=productReview, status=status, employee=employee, processedDate=now)
+    ProductReview.objects.filter(id=product_review_id).update(status=status)
+    return redirect('rating-process-template')
+
+def cms_logout(request):
+    del request.session['employee_id']
+    return redirect('cms-login')
 

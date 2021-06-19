@@ -1,7 +1,41 @@
-<!-- templates/registration/login.html -->
-<h2>Log In</h2>
-<form action="." method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Log In</button>
-</form>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark d-flex justify-content-between"
+         style="background-color: tomato">
+        <div class="d-flex">
+            <div>
+                <a href="https://www.javaguides.net" class="navbar-brand">Leonard Shop </a>
+            </div>
+        </div>
+        <div>
+            <a style="float: right" class="btn btn-primary" href="{% url 'sign-up' %}">Sign up</a>
+        </div>
+    </nav>
+</header>
+<br>
+
+<div class="row">
+    <div class="container">
+        <table class="table table-bordered">
+            <h2>Log In</h2>
+            <form action="." method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Log In</button>
+            </form>
+        </table>
+    </div>
+</div>
+</body>
+</html>

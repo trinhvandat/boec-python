@@ -20,5 +20,7 @@ urlpatterns = [
     path('cms-orders/', views.show_process_order_form, name='order-process-template'),
     path('cms-ratings/', views.show_rating_form, name='rating-process-template'),
     path('cms-home/', views.cms_home, name='cms-home'),
-    path(r'cms-process-order/<int:order_id>/(?P<status>\w+)/$', views.process_order, name='process-order')
+    path(r'cms-process-order/<int:order_id>/(?P<status>\w+)/$', views.process_order, name='process-order'),
+    path(r'cms-process-review/<int:product_review_id>/(?P<status>\w+)/$', views.process_review, name='process-review'),
+    path('cms-logout', views.cms_logout, name='cms-logout')
 ]

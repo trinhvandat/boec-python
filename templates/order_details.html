@@ -3,54 +3,58 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset = "UTF-8">
-	<title>Đặt hàng</title>
-	<link rel="stylesheet"
-	      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	      crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Đặt hàng</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
 </head>
 <body>
 <header>
-	<nav class="navbar navbar-expand-md navbar-dark"
-	     style="background-color: tomato">
-		<div>
-			<a href="https://www.javaguides.net" class="navbar-brand">Leonard Trinh</a>
-		</div>
-		<div>
-			<form method="get" th:action="@{/home}">
-				<input type="submit" value="Về Trang Chủ">
-			</form>
-		</div>
-	</nav>
+    <nav class="navbar navbar-expand-md navbar-dark d-flex justify-content-between"
+         style="background-color: tomato">
+        <div class="d-flex">
+            <div>
+                <a href="https://www.javaguides.net" class="navbar-brand">Leonard shop </a>
+            </div>
+            <div>
+                <a class="btn btn-primary" href="{% url 'account-cart' %}">Your cart</a>
+            </div>
+        </div>
+        <div>
+            <a style="float: right" class="btn btn-primary" href="{% url 'logout' %}">Log out</a>
+        </div>
+    </nav>
 </header>
 <br>
 
 <div class="row">
-	<div class="container">
-		<h3 class="text-center">Chi tiết đơn đặt hàng</h3>
-		<hr>
-		<br>
-			<table class="table table-bordered">
-				<thead>
-				<tr>
-					<th>Item ID</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Discount</th>
-                    <th>Total</th>
-				</tr>
-				</thead>
-				<tr>
-					<td>{{ item.id }}</td>
-					<td>{{ item.name }}</td>
-					<td>{{ item.price }}</td>
-                    <td>{{ item.discount }}</td>
-                    <td>{{ total }}</td>
-				</tr>
-			</table>
+    <div class="container">
+        <h3 class="text-center">Chi tiết đơn đặt hàng</h3>
+        <hr>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Discount</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+                <td>{{ item.discount }}</td>
+                <td>{{ total }}</td>
+            </tr>
+        </table>
         <a class="btn btn-primary" href="{% url 'confirm-order' item.id %}">Confirm Order</a>
-	</div>
+        <a style="float: right" class="btn btn-primary" href="{% url 'account-cart' %}">Back to cart</a>
+    </div>
 </div>
 </body>
 </html>

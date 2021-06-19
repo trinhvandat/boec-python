@@ -137,3 +137,10 @@ class ProcessedOrder(models.Model):
     status = models.CharField(max_length=256)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+class ProductReviewProcessed(models.Model):
+    processedDate = models.DateField(null=True)
+    status = models.CharField(max_length=256) #APPROVED, REMOVED
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    productReview = models.ForeignKey(ProductReview, on_delete=models.CASCADE)
+

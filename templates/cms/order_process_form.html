@@ -17,12 +17,9 @@
             <div>
                 <a href="https://www.javaguides.net" class="navbar-brand">Management Book </a>
             </div>
-            <div>
-                <a class="btn btn-primary" href="{% url 'account-cart' %}">Your cart</a>
-            </div>
         </div>
         <div>
-            <a style="float: right" class="btn btn-primary" href="{% url 'logout' %}">Log out</a>
+            <a style="float: right" class="btn btn-primary" href="{% url 'cms-logout' %}">Log out</a>
         </div>
     </nav>
 </header>
@@ -58,6 +55,7 @@
             {% endfor %}
 
         </table>
+    <a style="float: right" class="btn btn-primary" href="{% url 'cms-home' %}">Back</a>
     </div>
 </div>
 </body>

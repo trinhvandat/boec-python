@@ -2,73 +2,99 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset = "UTF-8">
-	<title>Chào Mừng bạn đến với hệ thống</title>
-	<link rel="stylesheet"
-	      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	      crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Leonard BoEC Shop</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
 </head>
-	<body>
-	<header>
-		<nav class="navbar navbar-expand-md navbar-dark"
-		     style="background-color: tomato">
-			<div>
-				<a href="https://www.facebook.com/profile.php?id=100008643390611" class="navbar-brand">Leonard Trinh</a>
-			</div>
-		</nav>
-	</header>
+<body>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark d-flex justify-content-between"
+         style="background-color: tomato">
+        <div class="d-flex">
+            <div>
+                <a href="https://www.javaguides.net" class="navbar-brand">Leonard shop </a>
+            </div>
+            <div>
+                <a class="btn btn-primary" href="{% url 'account-cart' %}">Your cart</a>
+            </div>
+        </div>
+        <div>
+            <a style="float: right" class="btn btn-primary" href="{% url 'logout' %}">Log out</a>
+        </div>
+    </nav>
+</header>
 
-	<div class="row">
-		<div class="container">
-			<h3 class="text-center">Confirm shipment</h3>
-			<hr>
-			<br>
-			<table class="table table-bordered">
-				<thead>
-					<tr style="font-weight: bold">Shop Leonard Trinh</tr>
-				</thead>
-					<tr>
-                        <td>
-						<lable>Customer name: </lable> <lable>{{ customerName }}</lable> <br> <br>
-						<lable>Order Code: </lable> <lable>{{ order.code }}</lable> <br> <br>
-						<lable>Order creation date: </lable> <lable>{{ order.createDate.day }}</lable> <br> <br>
-						<lable>Total: </lable> <lable>{{ order.total }}</lable> <br> <br>
-                        <label>Item: </label> <label>{{ order.item.name }}</label>
-					</td>
-					<td>
-                        <label style="font-weight: bold">Shipment fee</label> <label>{{ shipTotal }}</label><br><br>
-						<lable>Number house: </lable> <lable>{{ order.customer.address.numberHouse }}</lable> <br> <br>
-						<lable>Street:</lable> <lable>{{ order.customer.address.street }}</lable> <br> <br>
-						<lable>District: </lable> <lable>{{ order.customer.address.district }}</lable> <br> <br>
-						<lable>City: </lable> <lable>{{ order.customer.address.city }}</lable> <br> <br>
-					</td>
-                    </tr>
-			</table>
-            <table class="table">
-                <tr>
-                    <h3>Choose a shipping method</h3>
-                </tr>
-					<tr>
-						<td>
-                            <a class="btn btn-primary" href="{% url 'choose-shipment-method' order_id=order.id ship_type='NOW' %}">Now</a>
-						</td>
-						<td>
-							<a class="btn btn-primary" href="{% url 'choose-shipment-method' order_id=order.id ship_type='EXPRESS' %}">Express</a>
-						</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a class="btn btn-primary" href="{% url 'create-order' item_id=order.item.id %}">Back</a>
-                        </td>
-					</tr>
-                <tr></tr>
-            </table>
-		</div>
-	</div>
-	</body>
+<div class="row">
+    <div class="container">
+        <h3 class="text-center">Confirm shipment</h3>
+        <hr>
+        <br>
+        <table class="table table-bordered">
+            <thead>
+            <tr style="font-weight: bold">Shop Leonard Trinh</tr>
+            </thead>
+            <tr>
+                <td>
+                    <lable>Customer name:</lable>
+                    <lable>{{ customerName }}</lable>
+                    <br> <br>
+                    <lable>Order Code:</lable>
+                    <lable>{{ order.code }}</lable>
+                    <br> <br>
+                    <lable>Order creation date:</lable>
+                    <lable>{{ order.createDate.day }}</lable>
+                    <br> <br>
+                    <lable>Total:</lable>
+                    <lable>{{ order.total }}</lable>
+                    <br> <br>
+                    <label>Item: </label> <label>{{ order.item.name }}</label>
+                </td>
+                <td>
+                    <label style="font-weight: bold">Shipment fee</label> <label>{{ shipTotal }}</label><br><br>
+                    <lable>Number house:</lable>
+                    <lable>{{ order.customer.address.numberHouse }}</lable>
+                    <br> <br>
+                    <lable>Street:</lable>
+                    <lable>{{ order.customer.address.street }}</lable>
+                    <br> <br>
+                    <lable>District:</lable>
+                    <lable>{{ order.customer.address.district }}</lable>
+                    <br> <br>
+                    <lable>City:</lable>
+                    <lable>{{ order.customer.address.city }}</lable>
+                    <br> <br>
+                </td>
+            </tr>
+        </table>
+        <table class="table">
+            <tr>
+                <h3>Choose a shipping method</h3>
+            </tr>
+            <tr>
+                <td>
+                    <a class="btn btn-primary"
+                       href="{% url 'choose-shipment-method' order_id=order.id ship_type='NOW' %}">Now</a>
+                </td>
+                <td>
+                    <a class="btn btn-primary"
+                       href="{% url 'choose-shipment-method' order_id=order.id ship_type='EXPRESS' %}">Express</a>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a class="btn btn-primary" href="{% url 'create-order' item_id=order.item.id %}">Back</a>
+                </td>
+            </tr>
+            <tr></tr>
+        </table>
+    </div>
+</div>
+</body>
 </html>
