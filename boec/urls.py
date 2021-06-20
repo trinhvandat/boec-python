@@ -1,13 +1,10 @@
-from boec.customer.dao import CustomerDAO
-from boec.employee.dao import EmployeeDAO
-from boec.item.dao import ItemDAO
-from boec.order.dao import OrderDAO
-from boec.order.dao import CartDAO
-from boec.order.dao import ShipmentDAO
-from boec.order.dao import PaymentDAO
-from boec.product_review.dao import ProductReviewDAO
-from boec.process_order.dao import ProcessOrderDAO
-from boec.process_review.dao import ProcessReviewDAO
+from boec.business.customerdao import CustomerDAO
+from boec.business.employeedao import EmployeeDAO
+from boec.business.itemdao import ItemDAO
+from boec.business.orderdao import CartDAO, OrderDAO, PaymentDAO, ShipmentDAO
+from boec.business.productreviewdao import ProductReviewDAO
+from boec.business.processorderdao import ProcessOrderDAO
+from boec.business.processreviewdao import ProcessReviewDAO
 from django.urls import path
 
 urlpatterns = [

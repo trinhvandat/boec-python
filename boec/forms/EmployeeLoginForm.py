@@ -1,8 +1,8 @@
 from django import forms
 import re
 
-from boec.employee.model.EmpAccount import EmpAccount
-from boec.employee.model.Employee import Employee
+from boec.models.employeemodel.EmpAccount import EmpAccount
+from boec.models.employeemodel.Employee import Employee
 
 
 class EmployeeLoginForm(forms.Form):

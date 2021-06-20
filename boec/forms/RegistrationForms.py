@@ -1,11 +1,11 @@
 from django import forms
 import re
 
-from boec.customer.model.Account import Account
-from boec.customer.model.Address import Address
-from boec.customer.model.Customer import Customer
-from boec.customer.model.FullName import FullName
-from boec.order.model import Cart
+from boec.models.customermodel.Account import Account
+from boec.models.customermodel.Address import Address
+from boec.models.customermodel.Customer import Customer
+from boec.models.customermodel.FullName import FullName
+from boec.models.ordermodel import Cart
 
 
 class RegistrationForm(forms.Form):

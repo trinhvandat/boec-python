@@ -1,8 +1,8 @@
 from django import forms
 import re
 
-from boec.customer.model.Account import Account
-from boec.customer.model.Customer import Customer
+from boec.models.customermodel.Account import Account
+from boec.models.customermodel.Customer import Customer
 
 
 class LoginForm(forms.Form):
